@@ -1,0 +1,11 @@
+node_modules
+ios
+android
+
+
+.*
+typings
+!.gitignore
+
+package.json
+tsconfig.json
