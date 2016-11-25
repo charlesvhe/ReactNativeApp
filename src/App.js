@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, Text
+  View
 } from 'react-native';
 
 import { createStore, applyMiddleware, combineReducers } from 'redux';
@@ -9,7 +9,7 @@ import thunk from 'redux-thunk';
 
 import * as reducers from './reducers'
 
-import Counter from './components/Counter'
+import NewsList from './components/NewsList'
 
 const store = applyMiddleware(thunk)(createStore)(combineReducers(reducers));
 
@@ -18,7 +18,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <View>
-          <Counter />
+          <NewsList />
         </View>
       </Provider>
     );
