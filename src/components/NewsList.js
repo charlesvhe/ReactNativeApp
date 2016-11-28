@@ -25,7 +25,7 @@ class NewsList extends Component {
           dataSource={dataSource}
           renderRow={this._renderRow.bind(this)}
           enableEmptySections={true}
-          onEndReached={this._nextPage.bind(this)}
+          onEndReached={this._onEndReached.bind(this)}
           onEndReachedThreshold={1}
           renderFooter={this._renderFooter.bind(this)}
           refreshControl={
@@ -43,27 +43,26 @@ class NewsList extends Component {
     );
   }
   _renderRow(row) {
-    console.log('_renderRow');
     return (
       <Text>{row.title}</Text>
     );
-  }
-  _onRefresh() {
-    console.log('_onRefresh');
-    const {pagging, size} = this.props;
-    pagging(1, size);
-  }
-  _nextPage() {
-    console.log('_nextPage');
-    const {pagging, page, size, refreshing} = this.props;
-    if (!refreshing) {
-      pagging(page + 1, size);
-    }
   }
   _renderFooter() {
     return (
       <ActivityIndicator animating={this.props.refreshing} size="large" />
     );
+  }
+  _onRefresh() {
+    console.log('_onRefresh');
+    if (!this.props.refreshing) {
+      this.props.refresh(this.props.size);
+    }
+  }
+  _onEndReached() {
+    console.log('_onEndReached');
+    if (!this.props.refreshing) {
+      this.props.next(this.props.page, this.props.size);
+    }
   }
 }
 
