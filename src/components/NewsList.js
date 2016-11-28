@@ -11,14 +11,14 @@ import {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as actions from '../actions/NewsList'
+import * as actions from '../actions/NewsList';
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 })
-const dataSource = ds.cloneWithRows(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
+// const dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 })
+// const dataSource = ds.cloneWithRows(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
 
 class NewsList extends Component {
   render() {
-    const { refreshing } = this.props;
+    const { refreshing, dataSource } = this.props;
     return (
       <View style={styles.container}>
         <ListView
@@ -45,8 +45,8 @@ class NewsList extends Component {
   _renderRow(row) {
     console.log('_renderRow');
     return (
-      <Text>{row}</Text>
-    )
+      <Text>{row.title}</Text>
+    );
   }
   _onRefresh() {
     console.log('_onRefresh');
@@ -56,15 +56,14 @@ class NewsList extends Component {
   _nextPage() {
     console.log('_nextPage');
     const {pagging, page, size, refreshing} = this.props;
-    if (refreshing) {
-      return
+    if (!refreshing) {
+      pagging(page + 1, size);
     }
-    pagging(page + 1, size)
   }
   _renderFooter() {
     return (
       <ActivityIndicator animating={this.props.refreshing} size="large" />
-    )
+    );
   }
 }
 
