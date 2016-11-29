@@ -31,6 +31,6 @@ export function pagging(page, size) {
       })
       .catch((error) => {
         console.error(error);
-      })
+      });
   }
-};
+}

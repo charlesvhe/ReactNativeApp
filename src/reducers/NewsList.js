@@ -1,8 +1,8 @@
 import { ListView } from 'react-native'
-import { REFRESH, PAGE_START, PAGE_END } from '../actions/NewsList'
+import { PAGE_START, PAGE_END } from '../actions/NewsList'
 
-let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 })
-let defaultDataSource = ds.cloneWithRows([])
+let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
+let defaultDataSource = ds.cloneWithRows([]);
 
 export default function newsList(state = { data: [], dataSource: defaultDataSource, page: 0, size: 10, refreshing: false }, action) {
   switch (action.type) {
@@ -28,7 +28,7 @@ export default function newsList(state = { data: [], dataSource: defaultDataSour
         let data = state.data.concat(action.data);
         dataSource = dataSource.cloneWithRows(data);
         return {
-        ...state,
+          ...state,
           page: action.page,
           size: action.size,
           refreshing: false,
@@ -37,7 +37,7 @@ export default function newsList(state = { data: [], dataSource: defaultDataSour
         };
       } else {  // no data return
         return {
-        ...state,
+          ...state,
           refreshing: false
         };
       }

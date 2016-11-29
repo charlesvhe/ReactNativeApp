@@ -1,12 +1,5 @@
-import React, { Component } from 'react'
-import {
-  StyleSheet,
-  View,
-  ListView,
-  RefreshControl,
-  ActivityIndicator,
-  Text
-} from 'react-native'
+import { Component } from 'react'
+import { StyleSheet } from 'react-native'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -68,9 +61,9 @@ export default connect(
   state => ({
     ...state.newsList  // 自动展开state.newsList(reducer方法名)下所有属性
   }), 
-dispatch => ({
-      ...bindActionCreators(actions, dispatch)  // 自动展开actions下所有方法
-})
+  dispatch => ({
+        ...bindActionCreators(actions, dispatch)  // 自动展开actions下所有方法
+  })
 )(NewsList);
 
 const styles = StyleSheet.create({
