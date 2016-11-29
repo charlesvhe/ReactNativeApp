@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   StyleSheet,
   View,
@@ -6,15 +6,12 @@ import {
   RefreshControl,
   ActivityIndicator,
   Text
-} from 'react-native';
+} from 'react-native'
 
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-import * as actions from '../actions/NewsList';
-
-// const dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 })
-// const dataSource = ds.cloneWithRows(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
+import * as actions from '../actions/NewsList'
 
 class NewsList extends Component {
   render() {
@@ -55,13 +52,13 @@ class NewsList extends Component {
   _onRefresh() {
     console.log('_onRefresh');
     if (!this.props.refreshing) {
-      this.props.refresh(this.props.size);
+      this.props.pagging(1, this.props.size);
     }
   }
   _onEndReached() {
     console.log('_onEndReached');
     if (!this.props.refreshing) {
-      this.props.next(this.props.page, this.props.size);
+      this.props.pagging(this.props.page + 1, this.props.size);
     }
   }
 }

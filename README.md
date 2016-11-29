@@ -7,3 +7,5 @@ react-native run-ios
 npm install redux
 npm install redux-thunk
 npm install react-redux
+
+npm install eslint
