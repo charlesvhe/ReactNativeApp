@@ -1,7 +1,7 @@
-import counter from './Counter';
 import newsList from './NewsList';
+import newsDetail from './NewsDetail';
 
 export {
-  counter,
-  newsList
+  newsList,
+  newsDetail
 };

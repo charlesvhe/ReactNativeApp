@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View
+  Navigator
 } from 'react-native';
 
 import { createStore, applyMiddleware, combineReducers } from 'redux';
@@ -17,9 +17,13 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <View>
-          <NewsList />
-        </View>
+        <Navigator
+          initialRoute={{ scene: NewsList }}
+          renderScene={(route, navigator) => {
+            let Scene = route.scene;
+            return <Scene {...route.params} navigator={navigator} />
+          }}
+        />
       </Provider>
     );
   }

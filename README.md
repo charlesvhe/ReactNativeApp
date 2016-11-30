@@ -9,3 +9,4 @@ npm install redux-thunk
 npm install react-redux
 
 npm install eslint
+npm install eslint-plugin-react
